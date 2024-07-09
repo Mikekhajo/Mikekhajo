@@ -1,0 +1,38 @@
+version: '1'
+
+services:
+  heskunem:
+    container_name: heskunem
+    image: mike21011978/heskunem:latest
+    ports:
+      - 8030:80
+    restart: always
+
+  db:
+    image: mysql:latest
+    container_name: heskdb
+    environment:
+      MYSQL_ROOT_PASSWORD: Mm123456
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8080:80
+
+volumes:
+  dbdata:
