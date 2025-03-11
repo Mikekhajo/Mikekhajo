@@ -3,7 +3,7 @@ version: '1'
 services:
   heskunem:
     container_name: heskunem
-    image: mike21011978/heskunem:latest
+    image: mike21011978/heskunem:v.353
     ports:
       - 8030:80
     restart: always
@@ -13,7 +13,7 @@ services:
     container_name: heskdb
     environment:
       MYSQL_ROOT_PASSWORD: Mm123456
-      MYSQL_DATABASE: app_db
+      MYSQL_DATABASE: hesk
       MYSQL_USER: db_user
       MYSQL_PASSWORD: 1234
     ports:
